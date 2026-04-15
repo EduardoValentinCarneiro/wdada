@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Urban Rush Chrome Sandbox</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oxanium:wght@400;500;600;700&family=Sora:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div id="game-shell"></div>
+
+    <div id="hud">
+      <div class="panel top-panel">
+        <div class="brand">
+          <span class="brand-tag">Chrome Sandbox</span>
+          <h1>Urban Rush</h1>
+        </div>
+        <div class="status-grid">
+          <div class="status-card">
+            <span class="label">Dinheiro</span>
+            <strong id="moneyValue">$0</strong>
+          </div>
+          <div class="status-card">
+            <span class="label">Hora</span>
+            <strong id="clockValue">12:00</strong>
+          </div>
+          <div class="status-card">
+            <span class="label">Camera</span>
+            <strong id="cameraValue">3ª pessoa</strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel bars-panel">
+        <div class="bar-wrap">
+          <div class="bar-title-row">
+            <span>Vida</span>
+            <span id="healthText">100%</span>
+          </div>
+          <div class="bar health-bar">
+            <div id="healthFill" class="bar-fill"></div>
+          </div>
+        </div>
+        <div class="bar-wrap">
+          <div class="bar-title-row">
+            <span>Estamina</span>
+            <span id="staminaText">100%</span>
+          </div>
+          <div class="bar stamina-bar">
+            <div id="staminaFill" class="bar-fill"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel objective-panel">
+        <span class="label">Objetivos</span>
+        <p id="objectiveText">
+          Explore a cidade, roube carros, assalte civis, enfrente inimigos e
+          passe pelo marcador laranja para receber grana.
+        </p>
+      </div>
+
+      <div id="inventory" class="panel inventory-panel">
+        <div class="slot active" data-slot="0">
+          <span class="slot-key">1</span>
+          <strong>Soco</strong>
+          <small>Curto alcance</small>
+        </div>
+        <div class="slot" data-slot="1">
+          <span class="slot-key">2</span>
+          <strong>Pistola</strong>
+          <small id="ammoText">Munição infinita</small>
+        </div>
+      </div>
+
+      <div id="promptBox" class="panel prompt-panel hidden"></div>
+
+      <div class="crosshair">
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <div id="controlsCard" class="panel controls-panel">
+      <span class="label">Controles</span>
+      <p>`WASD` mover, `Shift` correr, `Espaço` pular, clique esquerdo atacar</p>
+      <p>`1/2` troca inventário, `E` entrar/sair do carro, `R` assaltar, `V` câmera, `M` mapa</p>
+    </div>
+
+    <div id="mapOverlay" class="overlay hidden">
+      <div class="map-frame panel">
+        <div class="map-header">
+          <div>
+            <span class="label">Mapa da Cidade</span>
+            <h2>Urban Rush</h2>
+          </div>
+          <div class="map-legend">
+            <span><i class="legend player"></i> Você</span>
+            <span><i class="legend car"></i> Carros</span>
+            <span><i class="legend npc"></i> NPCs</span>
+            <span><i class="legend mission"></i> Missão</span>
+          </div>
+        </div>
+        <canvas id="mapCanvas" width="900" height="900"></canvas>
+        <p class="map-tip">Pressione `M` novamente para voltar ao jogo.</p>
+      </div>
+    </div>
+
+    <div id="startOverlay" class="overlay">
+      <div class="start-card panel">
+        <span class="label">Jogo para Chrome</span>
+        <h2>Urban Rush Sandbox</h2>
+        <p>
+          Cidade original em 3D inspirada em sandbox urbano, com carros,
+          pedestres, combate, mapa, inventário, ciclo dia/noite e câmera em 1ª
+          ou 3ª pessoa.
+        </p>
+        <button
+          id="startButton"
+          type="button"
+          onclick="if(window.__urbanRushStart){window.__urbanRushStart()}"
+        >
+          Clique para Jogar
+        </button>
+        <small id="startHint">
+          Dica: clique dentro do jogo para travar o mouse e usar a mira.
+        </small>
+      </div>
+    </div>
+
+    <script type="module" src="./game.js"></script>
+  </body>
+</html>
